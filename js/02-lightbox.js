@@ -1,4 +1,22 @@
-import { galleryItems } from './gallery-items.js';
+import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-console.log(galleryItems);
+const ul = document.querySelector(".gallery");
+
+galleryItems.forEach((item) => {
+  const { preview, original, description } = item;
+  const li = `<li class="gallery__item">
+   <a class="gallery__link" href="${original}">
+      <img class="gallery__image" src="${preview}" alt="${description}" />
+   </a>
+</li>`;
+  ul.innerHTML += li;
+});
+
+const lightbox = new SimpleLightbox(".gallery__item a", {
+  captionSelector: "img",
+  captionType: "attr",
+  captionsData: "alt",
+  captionPosition: "bottom",
+  captionDelay: 250,
+});
